@@ -15,6 +15,10 @@ const MyProfile = () => {
   const [posts, setPosts] = useState([])
   const creatorName = posts.length > 0 ? posts[0].creator.username : "User"
 
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   useEffect(() => {
     const fetchPost = async () => {
       const res = await fetch(`/api/users/${userId}/posts`)
